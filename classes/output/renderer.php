@@ -55,6 +55,10 @@ class renderer extends \plugin_renderer_base {
      */
     public function render_reportpage($page) {
         $data = $page->export_for_template($this);
+        $printparam = optional_param('target', '', PARAM_TEXT);
+        if ($printparam == 'print') {
+            $data->printparam = $printparam;
+        }
         return $this->render_from_template('mod_questionnaire/reportpage', $data);
     }
 
